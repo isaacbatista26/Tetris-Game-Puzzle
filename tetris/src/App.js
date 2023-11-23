@@ -7,9 +7,8 @@ const App = () => {
 
   return (
     <div>
-      <h1>Grid App</h1>
-      <Grid grid={gridData} />
-
+      <h1>Tetris Block Puzzle</h1>
+      <Grid grid={grid} />
     </div>
     /*
     <div>

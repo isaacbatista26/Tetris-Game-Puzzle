@@ -13,13 +13,13 @@ const useGridState = () => {
     // Implemente a lógica para rotacionar o objeto no grid
     // crie a lógica de rotacao e coloque na variavel rotatedGrid
     //const rotatedGrid =  novaGrid
-    setGrid(rotatedGrid); // aqui setamos a grid
+    //setGrid(rotatedGrid); // aqui setamos a grid
   };
 
   const toDown = () => {
     // Implemente a lógica para mover o objeto para baixo no grid
     // const movedDownGrid = ....
-    setGrid(movedDownGrid); //aqui setamos a grid
+    //setGrid(movedDownGrid); //aqui setamos a grid
   };
 
   return {
