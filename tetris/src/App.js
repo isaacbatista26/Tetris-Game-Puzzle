@@ -1,11 +1,15 @@
 import React from 'react';
-import Grid from './Components/Grid'
+import Grid from './Components/Grid';
 
 const App = () => {
+  const gridData = Array.from({ length: 20 }, (_, rowIndex) =>
+    Array.from({ length: 10 }, (_, colIndex) => rowIndex * 10 + colIndex + 1)
+  );
+
   return (
     <div>
       <h1>Grid App</h1>
-      <Grid grid={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}/>
+      <Grid grid={gridData} />
     </div>
   );
 };
