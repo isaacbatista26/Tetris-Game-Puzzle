@@ -16,7 +16,7 @@ const useGridState = () => {
     //setGrid(rotatedGrid); // aqui setamos a grid
   };
 
-  const toDown = () => {
+  const toDown = (i) => {
     // Implemente a lógica para mover o objeto para baixo no grid
     // const movedDownGrid = ....
     //setGrid(movedDownGrid); //aqui setamos a grid
@@ -24,6 +24,7 @@ const useGridState = () => {
 
   return {
     grid,
+    setGrid,
     updateGrid,
     rotateObject,
     toDown,
