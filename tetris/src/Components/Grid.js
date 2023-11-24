@@ -2,6 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Cell from './Cell';
+import { TETROMINOES } from '../tetrominos';
 
 const StyledGrid = styled.div`
   display: grid;
@@ -12,13 +13,18 @@ const StyledGrid = styled.div`
 `;
 
 const Grid = ({ grid }) => {
+  const currentPiece = TETROMINOES['S'];
+
+  console.log(currentPiece.shape);
   return (
     <StyledGrid>
       {grid.map((row, rowIndex) => (
         row.map((type, colIndex) => (
-          <Cell key={`${rowIndex}-${colIndex}`} type={type} />
+          <Cell type={type} id={`${rowIndex}-${colIndex}`} />
         ))
       ))}
+      
+
     </StyledGrid>
   );
 };

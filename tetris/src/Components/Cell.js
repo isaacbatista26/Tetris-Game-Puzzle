@@ -11,8 +11,8 @@ const StyledCell = styled.div`
   box-sizing: border-box;
 `;
 
-const Cell = ({ type }) => {
-  return <StyledCell color={TETROMINOES[type].color} />
+const Cell = ({ type, id}) => {
+  return <StyledCell color={TETROMINOES[type].color} id={id}/>
 };
 
 export default Cell;
