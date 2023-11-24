@@ -3,7 +3,8 @@ import Grid from './Components/Grid';
 import useGridState from './Hooks/useGridState';
 
 const App = () => {
-  const { grid, rotateObject, toDown } = useGridState();
+  //const { grid, rotateObject, toDown } = useGridState();
+  const { grid } = useGridState();
 
   return (
     <div>
