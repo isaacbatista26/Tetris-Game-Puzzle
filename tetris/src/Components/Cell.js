@@ -5,8 +5,8 @@ import { TETROMINOES } from '../tetrominos';
 
 const StyledCell = styled.div`
   background: rgba(${(props) => props.color}, 0.8);
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   border: 1px solid #ccc;
   box-sizing: border-box;
 `;
