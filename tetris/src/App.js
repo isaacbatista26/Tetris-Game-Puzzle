@@ -31,6 +31,7 @@ const Sidebar = styled.div`
   width: 100px; /* Largura da barra lateral */
 `;
 
+
 const App = ({ playerInfo }) => {
   const { grid } = useGridState();
 
