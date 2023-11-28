@@ -6,8 +6,9 @@ import App from './App';
 ReactDOM.render(
   <App playerInfo={
     {
-    "nickname" : "fulano",
+    "nickname" : "Fulano",
     "score" : 100,
+    "nivel" : 2,
     "email" : "fulano@aluno.unb.br"
     }
   }/>,

@@ -1,57 +1,33 @@
+// App.js
 import React from 'react';
-import styled from 'styled-components';
 
+import { StyledSection, Main, Sidebar } from './Styles';
 import Grid from './Components/Grid';
 import PlayerInfo from './Components/PlayerInfo';
+import Score from './Components/Score'
+import NextTetromino from './Components/NextTetromino'
 
 import useGridState from './Hooks/useGridState';
 
-const StyledSection = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-const Main = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background-color: #fff; /* Cor de fundo da barra lateral */
-  color: white;
-  width: 600px; /* Largura da barra lateral */
-`;
-
-const Sidebar = styled.div`
-  display: block;
-  flex-direction: column;
-  justify-content: center;
-  background-color: #111; /* Cor de fundo da barra lateral */
-  color: white;
-  width: 100px; /* Largura da barra lateral */
-`;
-
-
 const App = ({ playerInfo }) => {
   const { grid } = useGridState();
-
   return (
     <div>
       <h1>Tetris Block Puzzle</h1>
       <StyledSection>
         <Main>
           <Sidebar>
-            <PlayerInfo info={playerInfo} />{/*INFOS COMO: NOME, NIVEL, RECORD*/}
-            <h2>Score</h2> {/*SCORE DO JOGO ATUAL*/}
+            <PlayerInfo info={playerInfo} />
+            <Score>Score</Score>
           </Sidebar>
           <Grid grid={grid} />
           <Sidebar>
-            <h1>Next tetromino</h1> {/*PAINEL DO PROX TETROMINO */}
+            <NextTetromino></NextTetromino>
           </Sidebar>
         </Main>
       </StyledSection>
     </div>
-    );
+  );
 };
 
 export default App;
