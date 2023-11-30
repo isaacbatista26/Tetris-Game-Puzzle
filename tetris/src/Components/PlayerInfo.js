@@ -1,29 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Label } from './styles/Label';
 
 const StyledPlayerInfo = styled.div`
   display: block;
-  background-color: red;
-  padding: 10px;
-  width: 200px;
+  padding: 0px 30px 10px 10px;
+  width: 100px;
   justfy-content: end;
+  padding-top: 10px;
+  border-right: 2px solid #2E2E2E;
 `;
-
-const Label = styled.div`
-  font-weight: bold;
-  color: black;
-  background-color:white;
-  padding: 8px 8px 8px 5px;
-  margin: 10px;
-`
 
 const PlayerInfo = ({ info }) => {
 
     return (
       <StyledPlayerInfo>
         <Label>
-          
-          {info.nickname}
+          <div>
+            {info.nickname}
+          </div>
         </Label>
         <Label>
           Level {info.nivel}

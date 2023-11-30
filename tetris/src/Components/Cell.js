@@ -4,11 +4,9 @@ import styled from 'styled-components';
 import { TETROMINOES } from '../tetrominos';
 
 const StyledCell = styled.div`
-  background: rgba(${(props) => props.color}, 0.8);
-  width: 30px;
-  height: 30px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
+  background: #2E2E2E;
+  width: 20px;
+  height: 20px;
 `;
 
 const Cell = ({ type, id}) => {

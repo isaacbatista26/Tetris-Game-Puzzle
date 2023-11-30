@@ -5,9 +5,9 @@ import Cell from './Cell';
 
 const StyledGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(10, 30px);
-  grid-template-rows: repeat(20, 30px);
-  grid-gap: 0.5px;
+  grid-template-columns: repeat(10, 20px);
+  grid-template-rows: repeat(20, 20px);
+  grid-gap: 3px;
   margin: 0px 20px;
 `;
 
