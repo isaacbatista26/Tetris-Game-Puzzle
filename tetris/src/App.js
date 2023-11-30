@@ -1,5 +1,8 @@
 // App.js
 import React from 'react';
+
+//import { StyledSection, Main, LeftSide, RightSide } from 'Styles';
+import {StyledSection} from './Components/styles/StyledSection';
 import {Main} from './Components/styles/Main';
 import {LeftSide} from './Components/styles/LeftSide';
 import {RightSide} from './Components/styles/RightSide';
@@ -16,6 +19,7 @@ const App = ({ playerInfo }) => {
   return (
     <div>
       <StyledIcon />
+      <StyledSection>
         <Main>
           <LeftSide>
             <PlayerInfo info={playerInfo} />
@@ -26,6 +30,7 @@ const App = ({ playerInfo }) => {
             <NextTetromino></NextTetromino>
           </RightSide>
         </Main>
+      </StyledSection>
     </div>
   );
 };
