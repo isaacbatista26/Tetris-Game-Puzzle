@@ -1,7 +1,7 @@
 // Cell.js
 import React from 'react';
 import styled from 'styled-components';
-import { TETROMINOES } from '../tetrominos';
+import { TETROMINOES } from '../../tetrominos';
 
 const StyledCell = styled.div`
   background: #2E2E2E;
