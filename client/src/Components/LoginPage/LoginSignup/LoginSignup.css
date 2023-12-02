@@ -1,0 +1,110 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 50px;
+    width: 900px;
+    background: #232323;
+}
+/*Sign Up and Login text*/
+.header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    margin-top: 30px;
+}
+/*Sign Up and Login text*/
+.text{
+    color:#fff;
+    font-size: 40px;
+    font-weight: 700;
+}
+/*Linha abaixo de "Login" e "Sign Up"*/
+.underline{
+    width: 61px;
+    height: 6px;
+    background: #fff;
+    border-radius: 9px;
+}
+/*Formatação Campo de Submissão*/
+.inputs{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+/*Formatação Campo de Submissão*/
+.input{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 480px;
+    height: 80px;
+    background: #eaeaea;
+    border-radius: 6px;
+}
+/*Posição dos icones no Campo de Submissão*/
+.input img{
+    margin: 0px 30px;
+}
+/*Campos de Submissão "Email", "Password", "Nickname"*/
+.input input{
+    height: 50px;
+    width: 400px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #797979;
+    font-size: 19px;
+}
+
+.forgot-password{
+    padding-left: 220px;
+    margin-top: 27px;
+    color: #fff;
+    font-size: 18px;
+
+}
+
+.forgot-password span{
+    color: #484c7a;
+    cursor: pointer;
+}
+
+/* Container "Create Account" e "Login" */
+.submit-container{
+    display: flex;
+    gap: 30px;
+    margin: 50px auto;
+}
+/* Opção Ativa no momento */
+.submit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 220px;
+    height: 59px;
+    color: #fff;
+    background: #393939;
+    border-radius: 50px;
+    font-size: 19px;
+    font-weight: 700;
+    cursor: pointer;
+}
+/* Opção Desativa no momento */
+.gray{ 
+    background: #232323;
+    color: #676767;
+}
+/*Tetris Block Puzzle*/
+.title{
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    font-size: 75px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
