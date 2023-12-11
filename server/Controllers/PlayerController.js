@@ -58,7 +58,22 @@ const loginPlayer = async (req, res) => {
 }
 
 const updatePlayer = async (req, res) => {
-    const {email, level, score} = req.body;
+    const {email, level, record} = req.body;
+    const updatedPlayer = await Player.findOneAndUpdate(
+        {email},
+        {level: level, record: record},
+        {new:true} 
+    );
+    if(!updatedPlayer){
+        res.status(400).json({message: 'Error updating player'});
+        return;
+    }
+    res.status(200).json({
+        nickname: updatedPlayer.nickname,
+        email: updatedPlayer.email,
+        level: updatedPlayer.level,
+        record: updatedPlayer.record
+    });
 }
 
-module.exports = { registerPlayer, getAllPlayers, loginPlayer };
+module.exports = { registerPlayer, getAllPlayers, loginPlayer, updatePlayer };
