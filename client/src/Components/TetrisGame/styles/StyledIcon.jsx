@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import LogoImage from "../../../../public/logo.png";
+import LogoImage from "../../../Assets/logo.png";
 
 const StyledIcon = styled.img`
     position: absolute;
