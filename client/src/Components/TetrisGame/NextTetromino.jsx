@@ -8,10 +8,11 @@ const StyledScore = styled.div`
   height: 100px;
 `;
 
+//<StyledScore>Next</StyledScore>
 const PlayerInfo = ({ info }) => {
 
     return (
-      <StyledScore>Next</StyledScore>
+      <div>oi</div>
     );
   };
   
