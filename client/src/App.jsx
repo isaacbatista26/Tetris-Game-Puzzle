@@ -1,7 +1,7 @@
 import React from 'react';
 //import { BrowserRouter , Route, Routes } from 'react-router-dom'
-import LoginSingup from './Components/LoginPage/LoginSignup/LoginSignup.jsx';
-/*import Tetris from './Pages/Tetris';*/
+import Register from './Components/LoginPage/LoginSignup/Register.jsx';
+import Tetris from './Pages/Tetris';
 
 const App = ({ playerInfo }) => {
   return (
@@ -13,7 +13,7 @@ const App = ({ playerInfo }) => {
     </BrowserRouter>
     */
    /*<Tetris playerInfo={playerInfo}/>*/
-   <LoginSingup/>
+   <Register />
   );
 };
 
