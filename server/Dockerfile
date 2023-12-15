@@ -2,7 +2,7 @@ FROM node:alpine
 WORKDIR /server
 COPY package.json .
 RUN npm install
-COPY . .
-EXPOSE 3000
+COPY . . 
+EXPOSE 5000
 
 CMD ["node", "app.js"]
