@@ -7,6 +7,7 @@ const App = ({ playerInfo }) => {
   return (
     <BrowserRouter>
       <Routes>
+        < Tetris/>
         <Route path="/" element={<Tetris playerInfo={playerInfo} />} />
       </Routes>
     </BrowserRouter> 
