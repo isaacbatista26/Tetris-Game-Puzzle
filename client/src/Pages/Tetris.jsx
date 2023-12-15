@@ -12,9 +12,9 @@ import { useGameStatus } from '../Hooks/useGameStatus';
 // Components
 import Stage from '../Components/TetrisGame/Stage';
 import Display from '../Components/TetrisGame/Display';
-import StartButton from '../Components/TetrisGame/StartButton';
+import Button from '../Components/TetrisGame/Button';
 
-const Tetris = () => {
+const Tetris = ( {playerInfo} ) => {
   const [dropTime, setDropTime] = useState(null);
   const [gameOver, setGameOver] = useState(false);
 
@@ -23,6 +23,8 @@ const Tetris = () => {
   const [score, setScore, rows, setRows, level, setLevel] = useGameStatus(
     rowsCleared
   );
+
+  //setar level do player!!!
 
   console.log('re-render');
 
@@ -34,7 +36,6 @@ const Tetris = () => {
 
   const keyUp = ({ keyCode }) => {
     if (!gameOver) {
-      // Activate the interval again when user releases down arrow.
       if (keyCode === 40) {
         setDropTime(1000 / (level + 1));
       }
@@ -42,7 +43,6 @@ const Tetris = () => {
   };
 
   const startGame = () => {
-    // Reset everything
     setStage(createStage());
     setDropTime(1000);
     resetPlayer();
@@ -53,17 +53,14 @@ const Tetris = () => {
   };
 
   const drop = () => {
-    // Increase level when player has cleared 10 rows
     if (rows > (level + 1) * 10) {
       setLevel(prev => prev + 1);
-      // Also increase speed
       setDropTime(1000 / (level + 1) + 200);
     }
 
     if (!checkCollision(player, stage, { x: 0, y: 1 })) {
       updatePlayerPos({ x: 0, y: 1, collided: false });
     } else {
-      // Game over!
       if (player.pos.y < 1) {
         console.log('GAME OVER!!!');
         setGameOver(true);
@@ -74,14 +71,10 @@ const Tetris = () => {
   };
 
   const dropPlayer = () => {
-    // We don't need to run the interval when we use the arrow down to
-    // move the tetromino downwards. So deactivate it for now.
     setDropTime(null);
     drop();
   };
 
-  // This one starts the game
-  // Custom hook by Dan Abramov
   useInterval(() => {
     drop();
   }, dropTime);
@@ -108,18 +101,28 @@ const Tetris = () => {
       onKeyUp={keyUp}
     >
       <StyledTetris>
+        <aside>
+          <div>
+            <Display text={`Nickname: ${playerInfo.nickname}`} />
+            <Display text={`Record: ${score}`} />
+          </div>
+          <div>
+            <Display text={`Level: ${level}`} />
+            <Display text={`Score: ${score}`} />
+            <Display text={`Rows: ${rows}`} />
+          </div>
+        </aside>
         <Stage stage={stage} />
         <aside>
           {gameOver ? (
             <Display gameOver={gameOver} text="Game Over" />
           ) : (
             <div>
-              <Display text={`Score: ${score}`} />
-              <Display text={`rows: ${rows}`} />
-              <Display text={`Level: ${level}`} />
+              <Display text={`Next Piece`} />
             </div>
+              //<Stage stage={player.nextPiece} />
           )}
-          <StartButton callback={startGame} />
+          <Button callback={startGame} />
         </aside>
       </StyledTetris>
     </StyledTetrisWrapper>

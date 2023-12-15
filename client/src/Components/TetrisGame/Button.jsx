@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledStartButton = styled.button`
+const StyledButton = styled.button`
   box-sizing: border-box;
 
   margin: 0 0 20px 0;
@@ -18,8 +18,8 @@ const StyledStartButton = styled.button`
   cursor: pointer;
 `;
 
-const StartButton = ({ callback }) => (
-  <StyledStartButton onClick={callback}>Start Game</StyledStartButton>
+const Button = ({ callback }) => (
+  <StyledButton onClick={callback}>Start Game</StyledButton>
 );
 
-export default StartButton;
+export default Button;
