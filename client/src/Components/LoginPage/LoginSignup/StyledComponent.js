@@ -31,7 +31,7 @@ export const Underline = styled.div`
   border-radius: 9px;
 `;
 
-export const Inputs = styled.div`
+export const Inputs = styled.form`
   margin-top: 30px;
   display: flex;
   flex-direction: column;
@@ -80,7 +80,7 @@ export const SubmitContainer = styled.div`
   margin: 50px auto;
 `;
 
-export const Submit = styled.div`
+export const Submit = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
