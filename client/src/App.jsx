@@ -9,7 +9,9 @@ const App = ({ playerInfo }) => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Tetris playerInfo={playerInfo} />} />
+        <Route path="/tetris" element={<Tetris playerInfo={playerInfo} />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   );
