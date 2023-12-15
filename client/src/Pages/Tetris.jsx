@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { createStage, checkCollision } from './gameHelpers';
 import { StyledTetrisWrapper, StyledTetris } from '../Components/TetrisGame/styles/StyledTetris';
@@ -12,17 +12,26 @@ import { useGameStatus } from '../Hooks/useGameStatus';
 // Components
 import Stage from '../Components/TetrisGame/Stage';
 import Display from '../Components/TetrisGame/Display';
-import StartButton from '../Components/TetrisGame/StartButton';
+import Button from '../Components/TetrisGame/Button';
+import { StyledLogo }  from '../Components/TetrisGame/styles/Logo';
+//import MusicPlayer from '../Components/TetrisGame/Music';
 
-const Tetris = () => {
+import Logo from '../Assets/logo.png';
+import tetrisSong from '../Assets/tetris-song.mp3';
+
+const Tetris = ( {playerInfo} ) => {
   const [dropTime, setDropTime] = useState(null);
   const [gameOver, setGameOver] = useState(false);
+
+  const [audio] = useState(new Audio(tetrisSong));  
 
   const [player, updatePlayerPos, resetPlayer, playerRotate] = usePlayer();
   const [stage, setStage, rowsCleared] = useStage(player, resetPlayer);
   const [score, setScore, rows, setRows, level, setLevel] = useGameStatus(
     rowsCleared
   );
+
+  //setar level do player!!!
 
   console.log('re-render');
 
@@ -34,7 +43,6 @@ const Tetris = () => {
 
   const keyUp = ({ keyCode }) => {
     if (!gameOver) {
-      // Activate the interval again when user releases down arrow.
       if (keyCode === 40) {
         setDropTime(1000 / (level + 1));
       }
@@ -42,7 +50,6 @@ const Tetris = () => {
   };
 
   const startGame = () => {
-    // Reset everything
     setStage(createStage());
     setDropTime(1000);
     resetPlayer();
@@ -53,17 +60,14 @@ const Tetris = () => {
   };
 
   const drop = () => {
-    // Increase level when player has cleared 10 rows
     if (rows > (level + 1) * 10) {
       setLevel(prev => prev + 1);
-      // Also increase speed
       setDropTime(1000 / (level + 1) + 200);
     }
 
     if (!checkCollision(player, stage, { x: 0, y: 1 })) {
       updatePlayerPos({ x: 0, y: 1, collided: false });
     } else {
-      // Game over!
       if (player.pos.y < 1) {
         console.log('GAME OVER!!!');
         setGameOver(true);
@@ -74,14 +78,10 @@ const Tetris = () => {
   };
 
   const dropPlayer = () => {
-    // We don't need to run the interval when we use the arrow down to
-    // move the tetromino downwards. So deactivate it for now.
     setDropTime(null);
     drop();
   };
 
-  // This one starts the game
-  // Custom hook by Dan Abramov
   useInterval(() => {
     drop();
   }, dropTime);
@@ -100,6 +100,19 @@ const Tetris = () => {
     }
   };
 
+  useEffect(() => {
+    if (!gameOver) {
+      audio.play();
+      audio.volume = 0.07;
+      audio.loop = true;
+    } else {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+
+
+  }, [gameOver, audio]);
+
   return (
     <StyledTetrisWrapper
       role="button"
@@ -107,19 +120,36 @@ const Tetris = () => {
       onKeyDown={e => move(e)}
       onKeyUp={keyUp}
     >
+      <StyledLogo src={Logo} alt="logo" />
       <StyledTetris>
+        <aside>
+          <div>
+            <Display text={`Nickname: ${playerInfo.nickname}`} />
+            <Display text={`Record: ${score}`} />
+          </div>
+          <div>
+            <Display text={`Level: ${level}`} />
+            <Display text={`Score: ${score}`} />
+            <Display text={`Rows: ${rows}`} />
+          </div>
+        </aside>
         <Stage stage={stage} />
         <aside>
           {gameOver ? (
             <Display gameOver={gameOver} text="Game Over" />
           ) : (
             <div>
-              <Display text={`Score: ${score}`} />
-              <Display text={`rows: ${rows}`} />
-              <Display text={`Level: ${level}`} />
+              <Display text={`Next Piece`} />
+              <div style={{ display: 'none' }}>
+                <audio controls autoplay>
+                  <source src={tetrisSong} type="audio/mp3"/>
+                </audio>
+              </div>
             </div>
+              //<MusicPlayer playing={gameOver}/>
+              //<Stage stage={player.nextPiece} />
           )}
-          <StartButton callback={startGame} />
+          <Button callback={startGame} />
         </aside>
       </StyledTetris>
     </StyledTetrisWrapper>

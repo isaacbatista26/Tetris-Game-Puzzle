@@ -5,13 +5,12 @@ export const StyledDisplay = styled.div`
   display: flex;
   align-items: center;
   margin: 0 0 20px 0;
-  padding: 20px;
-  border: 4px solid #333;
-  min-height: 30px;
+  padding: 10px;
+  min-height: 20px;
   width: 100%;
-  border-radius: 20px;
+  border-bottom: 3px solid #333;
   color: ${props => (props.gameOver ? 'red' : '#999')};
-  background: #000;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.8rem;
+  font-size: 1.2rem;
+  font-weight: 500;
 `;
