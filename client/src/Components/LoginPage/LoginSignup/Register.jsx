@@ -21,8 +21,6 @@ import password_icon from '../Assets/password.png'
 
 const Register = () => {
 
-    const [action, setAction] = useState("Login"); // Adicionando o estado e a função para alterá-lo
-
 
   return (
     <Container>
@@ -48,12 +46,12 @@ const Register = () => {
       </Inputs>
 
       <SubmitContainer>
-        <Submit className={action === "Login" ? "gray" : ""} onClick={() => { setAction("Sign Up") }}>
+        <Submit>
           Create Account
         </Submit>
-        <Submit className={action === "Sign Up" ? "gray" : ""} onClick={() => { setAction("Login") }}>
+        <GraySubmit>
           Login
-        </Submit>
+        </GraySubmit>
         
       </SubmitContainer>
 

@@ -1,6 +1,7 @@
 import React from 'react';
 //import { BrowserRouter , Route, Routes } from 'react-router-dom'
 import Register from './Components/LoginPage/LoginSignup/Register.jsx';
+import Login from './Components/LoginPage/LoginSignup/Login.jsx';
 import Tetris from './Pages/Tetris';
 
 const App = ({ playerInfo }) => {
@@ -8,12 +9,12 @@ const App = ({ playerInfo }) => {
     /*
     <BrowserRouter>
     <Routes>
-    <Route path="/" element={<Tetris playerInfo={playerInfo} />} />
+    //<Route path="/" element={<Tetris playerInfo={playerInfo} />} />
     </Routes>
     </BrowserRouter>
-    */
-   /*<Tetris playerInfo={playerInfo}/>*/
-   <Register />
+    
+   //<Tetris playerInfo={playerInfo}/>*/
+   <Register/>
   );
 };
 
