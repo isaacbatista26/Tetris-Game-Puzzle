@@ -16,7 +16,7 @@ import {
   Submit,
   GraySubmit,
   Title,
-} from './StyledComponent.js'
+} from '../Components/TetrisGame/styles/StyledLogin.jsx'
 
 
 import user_icon from '../Assets/person.png'
