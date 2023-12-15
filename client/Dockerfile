@@ -1,26 +1,24 @@
-# Use the official Node.js runtime as the base image
-FROM node:18 as build
+# Use a imagem oficial do Node.js com uma versão específica
+FROM node
 
-# Set the working directory in the container
-WORKDIR /client
+# Crie e defina o diretório de trabalho dentro do contêiner
+WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json to the working directory
-COPY . .
+# Copie o arquivo package.json e o package-lock.json para o diretório de trabalho
+COPY package.json package-lock.json ./
 
-# Install dependencies
+# Instale as dependências do projeto
 RUN npm install
 
-# Build the React app for production
+# Copie o restante dos arquivos do aplicativo para o diretório de trabalho
+COPY . .
+
+# Construa o aplicativo React com Vite
 RUN npm run build
 
-# Use Nginx as the production server
-FROM nginx:alpine
+# Exponha a porta 3000 (ou a porta que você configurou em seu aplicativo Vite)
+EXPOSE 3000
 
-# Copy the built React app to Nginx's web server directory
-COPY --from=build /client/dist /usr/share/nginx/html
+# Comando para iniciar o aplicativo quando o contêiner for iniciado
+CMD ["npm", "run", "preview"]
 
-# Expose port 80 for the Nginx server
-EXPOSE 5173
-
-# Start Nginx when the container runs
-CMD ["nginx", "-g", "daemon off;"]
