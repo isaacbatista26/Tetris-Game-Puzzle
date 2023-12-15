@@ -103,7 +103,8 @@ const Tetris = ( {playerInfo} ) => {
   useEffect(() => {
     if (!gameOver) {
       audio.play();
-      audio.volume = 0.1;
+      audio.volume = 0.07;
+      audio.loop = true;
     } else {
       audio.pause();
       audio.currentTime = 0;
