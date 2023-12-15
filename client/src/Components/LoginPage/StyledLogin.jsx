@@ -108,3 +108,12 @@ export const Title = styled.div`
   align-items: center;
   width: 100%;
 `;
+
+
+export const Validation = styled.div`
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  font-size: 75px;
+  background: red;
+
+`;

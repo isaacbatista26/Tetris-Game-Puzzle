@@ -16,7 +16,8 @@ import {
   Submit,
   GraySubmit,
   Title,
-} from '../Components/TetrisGame/styles/StyledLogin.jsx'
+  Validation,
+} from '../Components/LoginPage/StyledLogin.jsx'
 
 
 import user_icon from '../Assets/person.png'
@@ -26,7 +27,11 @@ import password_icon from '../Assets/password.png'
 const Login = () =>  {
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
-    const [ error, setError ] = useState(0);
+    const [ ur, setError ] = useState(0);
+    const errorMensage = {
+      401: "Credenciais inválidas",
+      403: "Acesso negado"
+    }
 
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -49,6 +54,7 @@ const Login = () =>  {
             setError(401);
           } else if (error.response.status === 403) {
             console.log('Acesso negado');
+            setError(403);
           }
         } else if (error.request) {
           // A solicitação foi feita, mas não houve resposta do servidor
@@ -60,7 +66,7 @@ const Login = () =>  {
       });
     }
 
-    useEffect(() => {}, [error]);
+    useEffect(() => {}, [ur]);
 
     return (
         <Container>
@@ -81,7 +87,7 @@ const Login = () =>  {
             </Input>
           </Inputs>
           {
-            error == 401 ? <div>Invalid credentials</div> : null
+            ur != 0 ? <Validation>{errorMensage.ur}</Validation> : null
           }
           <SubmitContainer>
             <GraySubmit>
@@ -92,8 +98,9 @@ const Login = () =>  {
             </Submit>
             
           </SubmitContainer>
-    
+
         </Container>
+        
       );
     }
     export default Login;

@@ -13,7 +13,7 @@ import {
   Submit,
   GraySubmit,
   Title,
-} from '../Components/LoginPage/LoginSignup/StyledComponent.jsx'
+} from '../Components/LoginPage/StyledLogin.jsx'
 
 import user_icon from '../Assets/person.png'
 import email_icon from '../Assets/email.png'

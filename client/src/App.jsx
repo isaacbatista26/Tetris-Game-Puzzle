@@ -1,7 +1,7 @@
 import React from 'react';
-import { BrowserRouter , Route, Routes } from 'react-router-dom'
-import Register from './Components/LoginPage/LoginSignup/Register.jsx';
-import Login from './Components/LoginPage/LoginSignup/Login.jsx';
+import { BrowserRouter , Route, Routes } from 'react-router-dom';
+import Register from './Pages/Register.jsx';
+import Login from './Pages/Login.jsx';
 import Tetris from './Pages/Tetris';
 
 
