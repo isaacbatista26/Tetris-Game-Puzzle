@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { createStage, checkCollision } from './gameHelpers';
 import { StyledTetrisWrapper, StyledTetris } from '../Components/TetrisGame/styles/StyledTetris';
@@ -13,10 +13,17 @@ import { useGameStatus } from '../Hooks/useGameStatus';
 import Stage from '../Components/TetrisGame/Stage';
 import Display from '../Components/TetrisGame/Display';
 import Button from '../Components/TetrisGame/Button';
+import { StyledLogo }  from '../Components/TetrisGame/styles/Logo';
+//import MusicPlayer from '../Components/TetrisGame/Music';
+
+import Logo from '../Assets/logo.png';
+import tetrisSong from '../Assets/tetris-song.mp3';
 
 const Tetris = ( {playerInfo} ) => {
   const [dropTime, setDropTime] = useState(null);
   const [gameOver, setGameOver] = useState(false);
+
+  const [audio] = useState(new Audio(tetrisSong));  
 
   const [player, updatePlayerPos, resetPlayer, playerRotate] = usePlayer();
   const [stage, setStage, rowsCleared] = useStage(player, resetPlayer);
@@ -93,6 +100,18 @@ const Tetris = ( {playerInfo} ) => {
     }
   };
 
+  useEffect(() => {
+    if (!gameOver) {
+      audio.play();
+      audio.volume = 0.1;
+    } else {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+
+
+  }, [gameOver, audio]);
+
   return (
     <StyledTetrisWrapper
       role="button"
@@ -100,6 +119,7 @@ const Tetris = ( {playerInfo} ) => {
       onKeyDown={e => move(e)}
       onKeyUp={keyUp}
     >
+      <StyledLogo src={Logo} alt="logo" />
       <StyledTetris>
         <aside>
           <div>
@@ -119,7 +139,13 @@ const Tetris = ( {playerInfo} ) => {
           ) : (
             <div>
               <Display text={`Next Piece`} />
+              <div style={{ display: 'none' }}>
+                <audio controls autoplay>
+                  <source src={tetrisSong} type="audio/mp3"/>
+                </audio>
+              </div>
             </div>
+              //<MusicPlayer playing={gameOver}/>
               //<Stage stage={player.nextPiece} />
           )}
           <Button callback={startGame} />
