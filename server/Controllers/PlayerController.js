@@ -41,11 +41,17 @@ const loginPlayer = async (req, res) => {
     const {email, password} = req.body;
     const player = await Player.findOne({email}).select('-_id -__v -createdAt -updatedAt');
     if(!player) {
-        res.status(400).json({message: 'Player not exist'});
+        res.status(401).json({
+            error: "Unauthorized",
+            message: "Credenciais inválidas"
+        });
         return;
     }
     if(password != player.password){
-        res.status(400).json({message: 'Incorrect password'});
+        res.status(403).json({
+            error: "Forbidden",
+            message: "Acesso negado"
+        });
         return;
     }
 
