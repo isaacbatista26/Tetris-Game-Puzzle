@@ -28,9 +28,6 @@ const Login = () => {
   const [forceRerender, setForceRerender] = useState(false);
 
   const errorMessage = 'Email ou senha inválidos';
-  
-  localStorage.removeItem('tetris@user');
-
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
