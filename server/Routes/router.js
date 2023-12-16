@@ -1,4 +1,10 @@
-const { registerPlayer, getAllPlayers, loginPlayer, updatePlayer } = require('../Controllers/PlayerController');
+const { 
+    registerPlayer,
+    getAllPlayers,
+    loginPlayer,
+    updatePlayer,
+    delPlayer
+} = require('../Controllers/PlayerController');
 
 const express = require('express');
 
@@ -15,5 +21,7 @@ router.get('/players', getAllPlayers);
 router.post('/login', loginPlayer);
 
 router.patch('/update', updatePlayer);
+
+router.delete('/delete', delPlayer);
 
 module.exports = router;
