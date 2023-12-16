@@ -103,7 +103,6 @@ const Tetris = () => {
   };
 
   const updatePlayerStats = async () => {
-    //if(score > playerInfo.record) playerInfo.record = score;
     if(score > playerInfo.record) setPlayerInfo({...playerInfo, record: score});
     try{
       const res = 
@@ -113,7 +112,7 @@ const Tetris = () => {
         record: playerInfo.record,
         level: playerInfo.level,
       });
-
+      console.log('Atualizado com sucesso!');
       console.log(res);
     } catch(error) {
       console.error('Erro:', error);
