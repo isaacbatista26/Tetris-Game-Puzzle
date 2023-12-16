@@ -23,7 +23,7 @@ const Tetris = ( {playerInfo} ) => {
   const [dropTime, setDropTime] = useState(null);
   const [gameOver, setGameOver] = useState(false);
 
-  const [audio] = useState(new Audio(tetrisSong));  
+  const [audio] = useState(new Audio(tetrisSong));
 
   const [player, updatePlayerPos, resetPlayer, playerRotate] = usePlayer();
   const [stage, setStage, rowsCleared] = useStage(player, resetPlayer);
@@ -62,7 +62,7 @@ const Tetris = ( {playerInfo} ) => {
   const drop = () => {
     if (rows > (level + 1) * 10) {
       setLevel(prev => prev + 1);
-      setDropTime(1000 / (level + 1) + 200);
+      setDropTime(500 / (level + 1) + 200);
     }
 
     if (!checkCollision(player, stage, { x: 0, y: 1 })) {
