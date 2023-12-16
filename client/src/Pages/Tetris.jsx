@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import axios from 'axios';
+
 import { createStage, checkCollision } from './gameHelpers';
 import { StyledTetrisWrapper, StyledTetris } from '../Components/TetrisGame/styles/StyledTetris';
 
@@ -100,6 +102,24 @@ const Tetris = () => {
     }
   };
 
+  const updatePlayerStats = async () => {
+    //if(score > playerInfo.record) playerInfo.record = score;
+    if(score > playerInfo.record) setPlayerInfo({...playerInfo, record: score});
+    try{
+      const res = 
+      await axios
+      .patch('http://localhost:5000/update', {
+        email: playerInfo.email,
+        record: playerInfo.record,
+        level: playerInfo.level,
+      });
+
+      console.log(res);
+    } catch(error) {
+      console.error('Erro:', error);
+    }
+  };
+
   useEffect(() => {
     const user = localStorage.getItem('tetris@user');
     if(!user) navigate("/");
@@ -113,6 +133,9 @@ const Tetris = () => {
     } else {
       audio.pause();
       audio.currentTime = 0;
+
+      updatePlayerStats();
+      localStorage.setItem('tetris@user', JSON.stringify(playerInfo));
     }
 
 
@@ -130,7 +153,7 @@ const Tetris = () => {
         <aside>
           <div>
             <Display text={`Nickname: ${playerInfo?.nickname}`} />
-            <Display text={`Record: ${score}`} />
+            <Display text={`Record: ${playerInfo.record}`} />
           </div>
           <div>
             <Display text={`Level: ${level}`} />
@@ -151,7 +174,6 @@ const Tetris = () => {
                 </audio>
               </div>
             </div>
-              //<MusicPlayer playing={gameOver}/>
               //<Stage stage={player.nextPiece} />
           )}
           <Button callback={startGame} />
