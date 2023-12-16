@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Importa o hook useHistory
+import { useNavigate } from 'react-router-dom';
 
 import {
   Container,
@@ -24,30 +24,29 @@ import password_icon from '../Assets/password.png';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [ur, setError] = useState(0);
+  const [errorCode, setErrorCode] = useState(0);
   const [forceRerender, setForceRerender] = useState(false);
 
   const errorMessage = 'Email ou senha inválidos';
   
-  // Obtém a função push do hook useHistory
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post('http://localhost:5000/login', {
-        email,
-        password,
+        email : email,
+        password: password,
       });
       console.log(res);
       console.log(res.data);
-      setError(0);
+      setErrorCode(0);
 
       // Redireciona para /tetris após um login bem-sucedido
       navigate('/tetris');
     } catch (error) {
       console.error('Erro:', error);
-      setError(1); 
+      setErrorCode(1); 
       setForceRerender((prevState) => !prevState);
     }
   };
@@ -72,7 +71,7 @@ const Login = () => {
           <InputField type="password" placeholder="Password" id="password" onChange={(e) => setPassword(e.target.value)} />
         </Input>
       </Inputs>
-      {ur !== 0 ? <Validation>{errorMessage}</Validation> : null}
+      {errorCode !== 0 ? <Validation>{errorMessage}</Validation> : null}
       <SubmitContainer>
         <GraySubmit>Create Account</GraySubmit>
         <Submit onClick={handleSubmit}>Login</Submit>

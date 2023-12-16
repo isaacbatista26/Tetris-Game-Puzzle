@@ -28,6 +28,18 @@ const registerPlayer = async (req, res) => {
     });
 }
 
+const delPlayer = async (req, res) => {
+    const { email } = req.body;
+    const player = await Player.deleteOne({email});
+    if(!player){
+        res.status(400).json({message: 'Error deleting player'});
+        return;
+    }
+
+    res.status(200).json({message: 'Player deleted'});
+
+}
+
 const getAllPlayers = async (req, res) => {
     const players = await Player.find({}).select('-password -_id -__v -createdAt -updatedAt');
     if(!players){
@@ -82,4 +94,4 @@ const updatePlayer = async (req, res) => {
     });
 }
 
-module.exports = { registerPlayer, getAllPlayers, loginPlayer, updatePlayer };
+module.exports = { registerPlayer, getAllPlayers, loginPlayer, updatePlayer, delPlayer };
