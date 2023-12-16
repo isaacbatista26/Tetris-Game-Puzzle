@@ -35,7 +35,7 @@ const Tetris = () => {
 
   const navigate = useNavigate();
 
-  const [ playerInfo, setPlayerInfo ] = useState({});
+  const [ playerInfo, setPlayerInfo ] = useState(JSON.parse(localStorage.getItem('tetris@user')));
 
   const movePlayer = dir => {
     if (!checkCollision(player, stage, { x: dir, y: 0 })) {
@@ -103,8 +103,14 @@ const Tetris = () => {
   };
 
   const updatePlayerStats = async () => {
-    //if(score > playerInfo.record) playerInfo.record = score;
-    if(score > playerInfo.record) setPlayerInfo({...playerInfo, record: score});
+    if(score > playerInfo.record){
+      setPlayerInfo({
+        email: playerInfo.email,
+        nickname: playerInfo.nickname,
+        record: score,
+        level: playerInfo.level
+      });
+    }
     try{
       const res = 
       await axios
@@ -113,7 +119,7 @@ const Tetris = () => {
         record: playerInfo.record,
         level: playerInfo.level,
       });
-
+      console.log('Atualizado com sucesso!');
       console.log(res);
     } catch(error) {
       console.error('Erro:', error);
@@ -122,9 +128,8 @@ const Tetris = () => {
 
   useEffect(() => {
     const user = localStorage.getItem('tetris@user');
-    if(!user) navigate("/");
 
-    setPlayerInfo(JSON.parse(user));
+    if(!user) navigate("/");
 
     if (!gameOver) {
       audio.play();

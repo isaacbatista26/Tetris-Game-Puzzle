@@ -50,7 +50,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-
+    localStorage.removeItem('tetris@user');
   }, [forceRerender]);
 
   return (
