@@ -29,6 +29,8 @@ const Login = () => {
 
   const errorMessage = 'Email ou senha inválidos';
   
+  localStorage.removeItem('tetris@user');
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -41,8 +43,7 @@ const Login = () => {
       console.log(res);
       console.log(res.data);
       setErrorCode(0);
-
-      // Redireciona para /tetris após um login bem-sucedido
+      localStorage.setItem('tetris@user', JSON.stringify(res.data));
       navigate('/tetris');
     } catch (error) {
       console.error('Erro:', error);
@@ -51,7 +52,9 @@ const Login = () => {
     }
   };
 
-  useEffect(() => {}, [forceRerender]);
+  useEffect(() => {
+
+  }, [forceRerender]);
 
   return (
     <Container>

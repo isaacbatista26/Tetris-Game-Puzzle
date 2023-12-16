@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { createStage, checkCollision } from './gameHelpers';
 import { StyledTetrisWrapper, StyledTetris } from '../Components/TetrisGame/styles/StyledTetris';
@@ -14,12 +15,11 @@ import Stage from '../Components/TetrisGame/Stage';
 import Display from '../Components/TetrisGame/Display';
 import Button from '../Components/TetrisGame/Button';
 import { StyledLogo }  from '../Components/TetrisGame/styles/Logo';
-//import MusicPlayer from '../Components/TetrisGame/Music';
 
 import Logo from '../Assets/logo.png';
 import tetrisSong from '../Assets/tetris-song.mp3';
 
-const Tetris = ( {playerInfo} ) => {
+const Tetris = () => {
   const [dropTime, setDropTime] = useState(null);
   const [gameOver, setGameOver] = useState(false);
 
@@ -31,9 +31,9 @@ const Tetris = ( {playerInfo} ) => {
     rowsCleared
   );
 
-  //setar level do player!!!
+  const navigate = useNavigate();
 
-  console.log('re-render');
+  const [ playerInfo, setPlayerInfo ] = useState({});
 
   const movePlayer = dir => {
     if (!checkCollision(player, stage, { x: dir, y: 0 })) {
@@ -101,6 +101,11 @@ const Tetris = ( {playerInfo} ) => {
   };
 
   useEffect(() => {
+    const user = localStorage.getItem('tetris@user');
+    if(!user) navigate("/");
+
+    setPlayerInfo(JSON.parse(user));
+
     if (!gameOver) {
       audio.play();
       audio.volume = 0.07;
@@ -124,7 +129,7 @@ const Tetris = ( {playerInfo} ) => {
       <StyledTetris>
         <aside>
           <div>
-            <Display text={`Nickname: ${playerInfo.nickname}`} />
+            <Display text={`Nickname: ${playerInfo?.nickname}`} />
             <Display text={`Record: ${score}`} />
           </div>
           <div>
