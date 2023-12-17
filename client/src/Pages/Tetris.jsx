@@ -20,12 +20,14 @@ import { StyledLogo }  from '../Components/TetrisGame/styles/Logo';
 
 import Logo from '../Assets/logo.png';
 import tetrisSong from '../Assets/tetris-song.mp3';
+import tetrisFail from '../Assets/tetris-fail.mp3';
 
 const Tetris = () => {
   const [dropTime, setDropTime] = useState(null);
   const [gameOver, setGameOver] = useState(false);
 
   const [audio] = useState(new Audio(tetrisSong));
+  const [audioFail] = useState(new Audio(tetrisFail));
 
   const [player, updatePlayerPos, resetPlayer, playerRotate] = usePlayer();
   const [stage, setStage, rowsCleared] = useStage(player, resetPlayer);
@@ -126,20 +128,37 @@ const Tetris = () => {
   };
 
   useEffect(() => {
-    if(!storageUser) navigate("/");
+    if(!storageUser) {
+      navigate("/");
+    }
     
-    if (!gameOver) {
+    audio.loop = true;
+
+    if(!gameOver && audio.paused) {
       audio.play();
-      audio.volume = 0.07;
-      audio.loop = true;
-    } else {
-      audio.pause();
-      audio.currentTime = 0;
-      updatePlayerStats();
     }
 
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+    };
+  }, [audio, storageUser, gameOver]);
 
-  }, [gameOver, audio]);
+  useEffect(() => {
+    if (!gameOver) {
+      audio.play();
+  } else {
+    audio.pause();
+    audio.currentTime = 0;
+    updatePlayerStats();
+    audioFail.play();
+  }
+  
+  return () => {
+    audio.pause();
+    audio.currentTime = 0;
+  };
+},[gameOver, audio]);
 
   const logOut = () => {
     localStorage.removeItem('tetris@user');
@@ -174,7 +193,7 @@ const Tetris = () => {
             <div>
               <Display text={`Next Piece`} />
               <div style={{ display: 'none' }}>
-                <audio controls autoPlay>
+                <audio controls>
                   <source src={tetrisSong} type="audio/mp3"/>
                 </audio>
               </div>
