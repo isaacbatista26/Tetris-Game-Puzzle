@@ -6,16 +6,16 @@ Note: You won't be able to run the project if you don't have access to the datab
 
 ### Clone the project:
 ```bash
-$git clone https://github.com/rafaelcarvalhoj/tetris-puzzle.git
+$ git clone https://github.com/rafaelcarvalhoj/tetris-puzzle.git
 ```
 ### Go to the project directory:
 ```bash
-$cd tetris-puzzle
+$ cd tetris-puzzle
 ```
 ### Build and start the Docker containers:
 ```bash
-$sudo docker-compose build
-$sudo docker-compose up
+$ sudo docker-compose build
+$ sudo docker-compose up
 ```
 
 This is the project main branch. If you want to test the game on your localhost, please use the `play-tetris` branch.
