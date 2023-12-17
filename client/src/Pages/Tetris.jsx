@@ -35,7 +35,8 @@ const Tetris = () => {
 
   const navigate = useNavigate();
 
-  const [ playerInfo, setPlayerInfo ] = useState({});
+  const [ playerInfo, setPlayerInfo ] = useState(JSON.parse(localStorage.getItem('tetris@user')));
+  const [storageUser, setStorageUser] = useState(playerInfo);
 
   const movePlayer = dir => {
     if (!checkCollision(player, stage, { x: dir, y: 0 })) {
@@ -103,29 +104,30 @@ const Tetris = () => {
   };
 
   const updatePlayerStats = async () => {
-    //if(score > playerInfo.record) playerInfo.record = score;
-    if(score > playerInfo.record) setPlayerInfo({...playerInfo, record: score});
-    try{
-      const res = 
-      await axios
-      .patch('http://localhost:5000/update', {
-        email: playerInfo.email,
-        record: playerInfo.record,
-        level: playerInfo.level,
-      });
+    if(score <= playerInfo.record) return;
+    playerInfo.record = score;
+    try {
 
+      const data = {
+        "nickname": playerInfo.nickname,
+        "email": playerInfo.email,
+        "record": playerInfo.record,
+        "level": playerInfo.level,
+    }
+      const res = await axios.patch('http://localhost:5000/update', data);
       console.log(res);
-    } catch(error) {
+      console.log(res.data);
+      localStorage.setItem('tetris@user', JSON.stringify(playerInfo));
+      setStorageUser(playerInfo);
+      setPlayerInfo(data);
+    } catch (error) {
       console.error('Erro:', error);
     }
   };
 
   useEffect(() => {
-    const user = localStorage.getItem('tetris@user');
-    if(!user) navigate("/");
-
-    setPlayerInfo(JSON.parse(user));
-
+    if(!storageUser) navigate("/");
+    
     if (!gameOver) {
       audio.play();
       audio.volume = 0.07;
@@ -133,9 +135,8 @@ const Tetris = () => {
     } else {
       audio.pause();
       audio.currentTime = 0;
-
+      
       updatePlayerStats();
-      localStorage.setItem('tetris@user', JSON.stringify(playerInfo));
     }
 
 
@@ -169,7 +170,7 @@ const Tetris = () => {
             <div>
               <Display text={`Next Piece`} />
               <div style={{ display: 'none' }}>
-                <audio controls autoplay>
+                <audio controls autoPlay>
                   <source src={tetrisSong} type="audio/mp3"/>
                 </audio>
               </div>
