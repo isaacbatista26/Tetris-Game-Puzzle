@@ -104,36 +104,30 @@ const Tetris = () => {
   };
 
   const updatePlayerStats = async () => {
-    console.log(`${score} > ${playerInfo.record} ?`);
-    if(score > playerInfo.record){
-      setPlayerInfo({
-        email: playerInfo.email,
-        nickname: playerInfo.nickname,
-        record: score,
-        level: playerInfo.level
-      });
+    if(score <= playerInfo.record) return;
+    playerInfo.record = score;
+    try {
+
+      const data = {
+        "nickname": playerInfo.nickname,
+        "email": playerInfo.email,
+        "record": playerInfo.record,
+        "level": playerInfo.level,
     }
-    console.log(`${score} = ${playerInfo.record} ?`);
-    try{
-      const res = 
-      await axios
-      .patch('http://localhost:5000/update', {
-        email: playerInfo.email,
-        record: playerInfo.record,
-        level: playerInfo.level,
-      });
-      console.log('Atualizado com sucesso!');
+      const res = await axios.patch('http://localhost:5000/update', data);
       console.log(res);
+      console.log(res.data);
       localStorage.setItem('tetris@user', JSON.stringify(playerInfo));
-      setStorageUser(localStorage.getItem('tetris@user'));
-    } catch(error) {
+      setStorageUser(playerInfo);
+      setPlayerInfo(data);
+    } catch (error) {
       console.error('Erro:', error);
     }
   };
 
   useEffect(() => {
     if(!storageUser) navigate("/");
-
+    
     if (!gameOver) {
       audio.play();
       audio.volume = 0.07;
