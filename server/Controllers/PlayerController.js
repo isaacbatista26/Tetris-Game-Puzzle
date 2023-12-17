@@ -8,9 +8,9 @@ const registerPlayer = async (req, res) => {
         return;
     }
     const newPlayer = await Player.create({
-        nickname,
-        email,
-        password,
+        nickname:nickname,
+        email:email,
+        password:password,
         level: 0,
         record: 0
     })

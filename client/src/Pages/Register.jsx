@@ -35,14 +35,13 @@ const Register = () => {
       const res = 
         await axios
         .post('http://localhost:5000/register', {
-          nickname : nickname,
-          email : email,
-          password: password,
+          "nickname" : nickname,
+          "email" : email,
+          "password": password,
         });
         console.log(res);
         console.log(res.data);
         setErrorCode(0);
-
         navigate('/');
     } catch(error) {
       console.error('Erro:', error);
@@ -73,7 +72,7 @@ const Register = () => {
             type="email"
             placeholder='Email'
             id="email"
-            onChange={(e) => setEmail(e.targer.value)} />
+            onChange={(e) => setEmail(e.target.value)} />
         </Input>
         <Input>
           <InputImage src={password_icon} alt="" />
@@ -81,7 +80,7 @@ const Register = () => {
             type="password" 
             placeholder="Password"
             id="password"
-            onChange={(e) => setPassword(e.targer.value)} />
+            onChange={(e) => setPassword(e.target.value)} />
         </Input>
       </Inputs>
 
