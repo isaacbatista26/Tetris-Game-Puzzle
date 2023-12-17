@@ -50,6 +50,9 @@ If you wish to contribute, feel free to open an [issue](https://github.com/rafae
 
 ## Feedback
 
-If you have any feedback, please reach out to us at rrafaelcarvalhoj@gmail.com
+If you have any feedback, please reach out to us at:
+rrafaelcarvalhoj@gmail.com
+isaacbatista2266@gmail.com
+eng.limaluis@gmail.com
 
 
