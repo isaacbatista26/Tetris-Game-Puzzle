@@ -135,12 +135,16 @@ const Tetris = () => {
     } else {
       audio.pause();
       audio.currentTime = 0;
-      
       updatePlayerStats();
     }
 
 
   }, [gameOver, audio]);
+
+  const logOut = () => {
+    localStorage.removeItem('tetris@user');
+    navigate('/');
+  }
 
   return (
     <StyledTetrisWrapper
@@ -177,9 +181,10 @@ const Tetris = () => {
             </div>
               //<Stage stage={player.nextPiece} />
           )}
-          <Button callback={startGame} />
+          <Button callback={startGame} label="Start Game" />
         </aside>
       </StyledTetris>
+      <Button callback={logOut} label="Log out"/>
     </StyledTetrisWrapper>
   );
 };
