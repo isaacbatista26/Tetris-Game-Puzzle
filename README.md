@@ -24,15 +24,16 @@ This is the project main branch. If you want to test the game on your localhost,
 
 The project is built using the following major frameworks and libraries:
 
-* ![React](https://img.shields.io/badge/-React-61DAFB?style=flat&logo=react&logoColor=white)
-  
-* ![Express](https://img.shields.io/badge/-Express-000000?style=flat&logo=express&logoColor=white)
+- [![React](https://img.shields.io/badge/-React-61DAFB?style=flat&logo=react&logoColor=white)](https://reactjs.org/)
 
-* ![MongoDB](https://img.shields.io/badge/-MongoDB-47A248?style=flat&logo=mongodb&logoColor=white)
+- [![Express](https://img.shields.io/badge/-Express-000000?style=flat&logo=express&logoColor=white)](https://expressjs.com/)
 
-* ![Docker](https://img.shields.io/badge/-Docker-2496ED?style=flat&logo=docker&logoColor=white)
+- [![MongoDB](https://img.shields.io/badge/-MongoDB-47A248?style=flat&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+
+- [![Docker](https://img.shields.io/badge/-Docker-2496ED?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
 
 These technologies form the core of the project, providing a robust foundation for its development and functionality.
+
 
 
 
