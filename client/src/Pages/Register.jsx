@@ -43,7 +43,7 @@ const Register = () => {
         console.log(res.data);
         setErrorCode(0);
 
-        navigate('/login');
+        navigate('/');
     } catch(error) {
       console.error('Erro:', error);
       setErrorCode(1);
@@ -89,8 +89,8 @@ const Register = () => {
         <Submit onClick={handleSubmit}>
           Create Account
         </Submit>
-        <GraySubmit>
-          Login
+        <GraySubmit onClick={()=>navigate('/')}>
+          Back
         </GraySubmit>
         
       </SubmitContainer>

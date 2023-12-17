@@ -73,7 +73,7 @@ const Login = () => {
       </Inputs>
       {errorCode !== 0 ? <Validation>{errorMessage}</Validation> : null}
       <SubmitContainer>
-        <GraySubmit>Create Account</GraySubmit>
+        <GraySubmit onClick={()=>navigate('/register')}>Create Account</GraySubmit>
         <Submit onClick={handleSubmit}>Login</Submit>
       </SubmitContainer>
     </Container>
