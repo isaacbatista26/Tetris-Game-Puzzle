@@ -27,7 +27,7 @@ const Login = () => {
   const [errorCode, setErrorCode] = useState(0);
   const [forceRerender, setForceRerender] = useState(false);
 
-  const errorMessage = 'Email ou senha inválidos';
+  const errorMessage = '*Email ou senha inválidos*';
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {

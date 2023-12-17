@@ -10,7 +10,6 @@ import {
   Input,
   InputImage,
   InputField,
-  ForgotPassword,
   SubmitContainer,
   Submit,
   GraySubmit,
