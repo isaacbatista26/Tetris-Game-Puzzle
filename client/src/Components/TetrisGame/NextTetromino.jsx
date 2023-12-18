@@ -3,9 +3,9 @@ import { StyledNextTetromino } from './styles/StyledNextTetromino';
 
 import Cell from './Cell';
 
-const Stage = ({ stage }) => (
+const NextTetromino = ({ nexttetromino }) => (
   <StyledNextTetromino width={6} height={18}>
-    {stage.map(row => row.map((cell, x) => <Cell key={x} type={cell[0]} />))}
+
   </StyledNextTetromino>
 );
 

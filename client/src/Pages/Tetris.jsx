@@ -18,6 +18,11 @@ import Display from '../Components/TetrisGame/Display';
 import Button from '../Components/TetrisGame/Button';
 import { StyledLogo }  from '../Components/TetrisGame/styles/Logo';
 
+import { StyledNextTetromino } from '../Components/TetrisGame/styles/StyledNextTetromino';
+import NextTetromino from '../Components/TetrisGame/NextTetromino';
+import { TETROMINOS, tetrominos, randomTetromino } from './tetrominos';
+import Cell from '../Components/TetrisGame/Cell';
+
 import Logo from '../Assets/logo.png';
 import tetrisSong from '../Assets/tetris-song.mp3';
 import tetrisFail from '../Assets/tetris-fail.mp3';
@@ -34,6 +39,20 @@ const Tetris = () => {
   const [score, setScore, rows, setRows, level, setLevel] = useGameStatus(
     rowsCleared
   );
+
+
+
+  const [rightStage,setRightStage ] = useState([ randomTetromino() , randomTetromino(), randomTetromino(), ]);
+
+  const addLeftStage = ( t ) => {
+        setRigthStage(rightStage.shift(t));
+  };
+
+
+  const getNextTetromino = () => {
+        setCurrentePiece(nextPiece);
+        setNextPiece(randomTetromino());
+  };
 
   const navigate = useNavigate();
 
@@ -54,6 +73,20 @@ const Tetris = () => {
     }
   };
 
+  const gridTetromino = () => {
+      setStage(createStage());
+  };
+
+
+  const pauseGame = ({ Keycode }) => {
+      if (!gameOver) {
+        if (keyCode == 77) {
+          setDroptime(null);
+          console.log("jogo pausado");
+            }
+        }
+    };
+
   const startGame = () => {
     setStage(createStage());
     setDropTime(1000);
@@ -62,6 +95,7 @@ const Tetris = () => {
     setLevel(0);
     setRows(0);
     setGameOver(false);
+    setpauseGame(false);
   };
 
   const drop = () => {
@@ -131,7 +165,7 @@ const Tetris = () => {
     if(!storageUser) {
       navigate("/");
     }
-    
+
     audio.loop = true;
 
     if(!gameOver && audio.paused) {
@@ -153,7 +187,7 @@ const Tetris = () => {
     updatePlayerStats();
     audioFail.play();
   }
-  
+
   return () => {
     audio.pause();
     audio.currentTime = 0;
@@ -193,12 +227,11 @@ const Tetris = () => {
             <div>
               <Display text={`Next Piece`} />
               <div style={{ display: 'none' }}>
-                <audio controls>
+                  <audio controls>
                   <source src={tetrisSong} type="audio/mp3"/>
                 </audio>
               </div>
             </div>
-              //<Stage stage={player.nextPiece} />
           )}
           <Button callback={startGame} label="Start Game" />
         </aside>

@@ -4,11 +4,19 @@ import { TETROMINOS, randomTetromino } from '../Pages/tetrominos';
 import { STAGE_WIDTH, checkCollision } from '../Pages/gameHelpers';
 
 export const usePlayer = () => {
+
+  const [rightStage,setRightStage ] = useState([ randomTetromino() , randomTetromino(), randomTetromino()]);
+
   const [player, setPlayer] = useState({
     pos: { x: 0, y: 0 },
     tetromino: TETROMINOS[0].shape,
+    next: rightStage,
     collided: false,
   });
+
+  function resetRightStage() {
+    setRightStage([ randomTetromino() , randomTetromino(), randomTetromino(), ]);
+  }
 
   function rotate(matrix, dir) {
     // Make the rows to become cols (transpose)
@@ -47,10 +55,11 @@ export const usePlayer = () => {
   const resetPlayer = useCallback(() => {
     setPlayer({
       pos: { x: STAGE_WIDTH / 2 - 2, y: 0 },
-      tetromino: randomTetromino().shape,
+      tetromino: randomTetromino( rightStage ).shape,
+      next: rightStage(),
       collided: false,
     });
   }, []);
 
-  return [player, updatePlayerPos, resetPlayer, playerRotate];
+  return [player, rightStage, setRightStage, resetRightStage,updatePlayerPos, resetPlayer, playerRotate];
 };
