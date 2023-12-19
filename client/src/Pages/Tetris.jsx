@@ -191,14 +191,12 @@ const Tetris = () => {
             <Display gameOver={gameOver} text="Game Over" />
           ) : (
             <div>
-              <Display text={`Next Piece`} />
               <div style={{ display: 'none' }}>
                 <audio controls>
                   <source src={tetrisSong} type="audio/mp3"/>
                 </audio>
               </div>
             </div>
-              //<Stage stage={player.nextPiece} />
           )}
           <Button callback={startGame} label="Start Game" />
         </aside>
