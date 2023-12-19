@@ -1,6 +1,6 @@
 # Tetris Block Puzzle
 
-## general game presentation
+## General game presentation:
 
   https://www.youtube.com/watch?v=SNd-nOf7LBw
 
