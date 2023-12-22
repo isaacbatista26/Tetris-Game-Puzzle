@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 export const StyledTetrisWrapper = styled.div`
 background: #222222;
+display: flex;
+flex-direction: column;
+height: 100vh;
+align-items: center;
 `;
 
 export const StyledTetris = styled.div`
@@ -9,7 +13,8 @@ export const StyledTetris = styled.div`
   align-items: flex-start;
   justify-content: center;
   align-items: stretch;
-  margin: 50px auto;
+  margin: auto auto;
+
 
   aside {
     min-width: 200px;

@@ -1,19 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
+import { StyledNextTetromino } from './styles/StyledNextTetromino';
 
-const StyledScore = styled.div`
-  display: block;
-  background-color: green; /* Cor de fundo da barra lateral */
-  width: 100px; /* Largura da barra lateral */
-  height: 100px;
-`;
+import Cell from './Cell';
 
-//<StyledScore>Next</StyledScore>
-const PlayerInfo = ({ info }) => {
+const Stage = ({ stage }) => (
+  <StyledNextTetromino width={6} height={18}>
+    {stage.map(row => row.map((cell, x) => <Cell key={x} type={cell[0]} />))}
+  </StyledNextTetromino>
+);
 
-    return (
-      <div>oi</div>
-    );
-  };
-  
-  export default PlayerInfo;
+export default NextTetromino;
