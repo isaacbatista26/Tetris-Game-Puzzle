@@ -4,6 +4,16 @@
 
   https://www.youtube.com/watch?v=SNd-nOf7LBw
 
+
+
+![Screenshot from 2024-02-26 12-22-58](https://github.com/isaacbatista26/tetris-puzzle/assets/118384776/58003460-b2ae-4fee-be2e-b79548ee58d6)
+
+![Screenshot from 2024-02-26 12-23-12](https://github.com/isaacbatista26/tetris-puzzle/assets/118384776/e2cf87f7-57ae-4171-a82b-7d8e4e0e5ca9)
+
+![Screenshot from 2024-02-26 12-23-27](https://github.com/isaacbatista26/tetris-puzzle/assets/118384776/251a3615-e5c2-4fde-b1ff-7d1094b386cf)
+
+
+
 ## Run Locally
 
 Note: You won't be able to run the project if you don't have access to the database.
@@ -36,10 +46,6 @@ The project is built using the following major frameworks and libraries:
 - [![Docker](https://img.shields.io/badge/-Docker-2496ED?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
 
 These technologies form the core of the project, providing a robust foundation for its development and functionality.
-
-
-
-
 
 ## Developers
 
